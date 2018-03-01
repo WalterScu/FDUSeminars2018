@@ -1,0 +1,511 @@
+% !TEX root=hodge.tex
+\documentclass{amsart}
+\usepackage{euler}
+\usepackage{times}
+\usepackage[all]{xy}
+\usepackage{notestemplate}
+\usepackage[utf8]{inputenc}
+
+\title{Hodge Theory}
+\author{ThinkCat}
+\date{2018.02}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Hodge Decomposition for Real Manifolds}
+Suppose $(X,g)$ be an $n$-dimensional manifold with Riemannian metric $g$ and $\Omega^k (X)$ be the bundle of $k$-forms of $X$, $A^k (X)$ be the space of differential forms of degree $k$ on $X$.
+
+With give Riemannian metric, we can define some $L^2$ metric on the space of differential forms as follows
+$$
+(\alpha, \beta) := \int_{X} g_x(\alpha, \beta) \cdot \vol   
+$$
+where $\alpha$ and $\beta$ are any two differential forms of degree $k$ on $X$. Naturally, we have differential operator on $A^*(X)$ as
+$$
+d: A^*(X) \rightarrow A^{*+1}(X)
+$$
+Since have already defined a metric on $A^*(X)$,  we can also give formal adjoint operator $d^*: A^{*+1} \rightarrow A^*$ as
+$$
+(\alpha, d\beta)=(d^*\alpha, \beta)
+$$
+where $\alpha \in A^{k+1}(X), \beta \in A^k(X)$. It is accessible because $A^k(X)$ is finitely dimensional $\mathbb{R}$-vector space point-wise as $X$ is $n$-dimensional manifold so that we can define $d^* \alpha$ point-wise and then glue them into global differential form by unit partition.
+
+\subsection{Laplacian operators and Harmonic forms}
+Let $\omega \in $. If $\omega \in A^k(X)$ satisfies
+\[
+\begin{aligned}
+&d(\omega)=0 & & d^*(\omega)=0
+\end{aligned}
+\]
+which also means $\omega \in \ker d \cap \ker d^*$, then we call $\omega$ a \textbf{harmonic form}. Denote $\mathcal{H}^k(X)$ the space of harmonic forms of $X$ of degree $k$. We can also equivalent define $\mathcal{H}^k(X)$ by kernel of Laplacian operator
+\[
+\Delta_d := d \cdot d^* + d^* \cdot d
+\]
+If $\omega \in \ker d \cap \ker d^*$, then $\Delta_d(\omega)= d\cdot d^* (\omega) + d^* \cdot d (\omega) =0$. Conversely, if $\Delta_d(\omega)=0$, then $d \cdot d^* (\omega) = - d^* \cdot d (\omega)$, hence
+\[
+\begin{aligned}
+(d \cdot d^*(\omega), d \cdot d^* (\omega)) &= -(d \cdot d^*(\omega),d^* \cdot d(\omega) )\\
+&= (d^2 \cdot d^*(\omega), d^*(\omega) )\\
+& = 0
+\end{aligned}
+\]
+It implies $d\cdot d^* (\omega) =0$. Hence
+\[
+\begin{aligned}
+(d(\omega), d(\omega) )&= (\omega, d^* \cdot d(\omega))\\
+&=0
+\end{aligned}
+\]
+Similarly, we can also prove $(d^*(\omega),d^*(\omega) ) =0$. Hence $\omega \in \ker d \cap \ker d^*$.
+\begin{secthm}[Hodge Theorem]
+	Suppose $(X,g)$ is a compact manifold with Riemannian metric $g$. We have a decomposition as an orthogonal direct sum of $\mathbb{R}$-linear spaces
+	$$
+	A^k(X) = \mathcal{H}^k \oplus \im d \oplus \im d^*
+	$$
+\end{secthm}
+
+\begin{seccor}
+	The natural map 
+	\[
+	\mathcal{H}^k(X) \rightarrow H^k(X,\mathbb{R})
+	\]
+	that maps harmonic forms to cohomology class is bijection.
+\end{seccor}
+
+\section{Hodge theory in K\"ahler case}
+Let $(X,I)$ be an almost complex manifold. Linear algebra tell us that almost complex structure induces canonical $\mathbb{C}$-linear decomposition of complexed tangent space
+\[
+T_{X,\mathbb{C}}= T_{X}^{1,0} \oplus T_X^{0,1}
+\]
+where $T_X^{1,0}$ and $T_X^{0,1}$ are eigenvector spaces associated to eigenvalues $i$ respectively $-i$ of $I$. Hence, if we take the dual space of $T_{X,\mathbb{C}}$, then we can get $\mathbb{C}$-linear decomposition of differential forms
+\[
+\Omega_{X,\mathbb{C}} = \Omega_X^{1,0} \oplus \Omega_X^{0,1}
+\]
+Hence respect to tensor product of $\mathbb{C}$-linear spaces, we have bidegreed decomposition of complex de Rham complex on $X$
+\[
+\Omega^k_{\mathbb{C}} = \bigoplus_{p+q=k}\bigwedge^p \Omega_X^{1,0} \otimes \bigwedge^q \Omega_X^{0,1}
+\]
+Denote $\bigwedge^p \Omega_X^{1,0} \otimes \bigwedge^q \Omega_X^{0,1}$ by $\Omega^{p,q}_X$ and their sheaves of sections by $\mathcal{A}^k_{X,\mathbb{C}}$ and $\mathcal{A}^{p,q}_{X}$. Hence we have projection maps
+\[
+\varphi^{p,q}: \mathcal{A}^{k}_{X,\mathbb{C}} \rightarrow \mathcal{A}^{p,q}_X
+\]
+for any $k= p+q$. Put 
+\[
+\begin{aligned}
+\partial:= \varphi^{p+1,q} \circ d : \mathcal{A}^{p,q}_{X} &\rightarrow \mathcal{A}^{p+1,q}_{X}  \\
+\bar{\partial}:= \varphi^{p,q+1} \circ d: \mathcal{A}^{p,q}_X &\rightarrow \mathcal{A}^{p,q+1}_X
+\end{aligned}
+\]
+\begin{seclemma}
+	$\partial$ and $\bar{\partial}$ both satisfy Leihniz rule, e.g.
+	\[
+	\partial(\alpha \wedge \beta) = \partial{\alpha} \wedge \beta +(-1)^{p+q} \alpha \wedge \partial{\beta}
+	\]
+	and
+	\[
+	\bar{\partial}(\alpha \wedge \beta) = \bar{\partial}\alpha \wedge \beta + (-1)^{p+q}\alpha \wedge \bar{\partial} \beta
+	\]
+\end{seclemma}
+\begin{proof}
+	Since projection maps $\varphi^{p+1,q}$ and $\varphi^{p,q+1}$ are $\mathbb{C}$-linear, it is easy to deduce Leibniz rules of $\partial$ and $\bar{\partial}$ from that of $d$.
+\end{proof}
+\begin{secdefn}
+	Almost complex manifold $(X,I)$ is called integrable if $X$ is a complex manifold which induces an almost structure $I$.
+\end{secdefn}
+\begin{secthm}[Newlander-Nierenberg]
+	$(X,I)$ is integrable if and only if $T_X^{0,1}$ satisfies Frobenius condition, i.e.
+	\[
+	[T_X^{0,1}, T_X^{0,1}] \subset T_X^{0,1}
+	\]
+\end{secthm}
+
+\begin{seccor}
+	Suppose $(X,I)$ be an almost complex manifold. Following statements are equivalent
+	\begin{itemize}
+		\item $(X,I)$ is integrable
+		\item $d = \partial + \bar{\partial}$
+		\item $\varphi^{0,2}\circ d: \mathcal{A}^{1,0}_X \rightarrow \mathcal{A}^{0,2}_X$ is zero map.
+	\end{itemize}
+\end{seccor}
+\begin{proof}
+	We have standard formula for $d$ as following
+	\[
+	d\alpha(v,w)= v(\alpha(w)) - w(\alpha(v)) - \alpha([v,w])
+	\]
+	for all 1-form $\alpha$ and $v,w$ any two sections of $T_X^{1}$.
+	Let $\alpha$ be (1,0)-type form and $v,w$ be (0,1)-type. Then we deduce that $v(\alpha(w))=w(\alpha(v))=0$, so 
+	\[
+	d\alpha(v,w)= - \alpha([v,w])
+	\]
+	it implies $d\alpha$ has no components of type (0,2) if and only if for all (2,0)-type section $v \otimes w$, $\alpha([v,w])=0$ or equivalently $[v,w]$ is of type (0,1). Hence $(X,I)$ is integrable if and only if $\varphi^{0,2} \circ d$ is zero map on $\mathcal{A}^{1,0}_X$.
+	
+	Suppose $f dv_1 \wedge dv_2 \wedge \cdots \wedge dv_p \wedge dw_1 \wedge \cdots \wedge dw_q$ be a $(p,q)$-form. By formula of differential, we only need to check 
+	\begin{align}
+	&df \in \mathcal{A}_X^{0,1} \oplus \mathcal{A}_X^{1,0} &\\
+	&dv_i \in \mathcal{A}_X^{1,1} \oplus \mathcal{A}_X^{2,0}&\\
+	&dw_j \in \mathcal{A}_X^{1,1} \oplus \mathcal{A}_X^{0,2}&
+	\end{align}
+	Condition (1) is obvious. Condition (2) is equivalent to assumption that $\varphi^{0,2} \circ d$ is zero map on $\mathcal{A}_{X}^{1,0}$. Since $dw = \bar{d\bar{w}} \in \overline{\mathcal{A}_X^{1,1}} \oplus \overline{\mathcal{A}_X^{2,0}}$ and conjugation relation $\mathcal{A}_X^{0,2} = \overline{\mathcal{A}_X^{2,0}}$, condition (2) and (3) are equivalent. Hence we conclude that 
+	$d= \partial + \bar{\partial}$ is equivalent to fact that $\varphi^{0,2} \circ d$ is zero map on $\mathcal{A}_{X}^{1,0}$.
+\end{proof}
+
+\begin{secprop}
+	Suppose $(X,I)$ be integrable almost complex manifold. Then we have 
+	\begin{enumerate}
+		\item $\partial^2 = 0 $ and $\bar{\partial}^2=0$
+		\item $\partial \bar{\partial} + \bar{\partial} \partial =0$
+	\end{enumerate}
+	In summary, $\{\mathcal{A}_X^{*,*}, \partial, \bar{\partial} \}$ is a bicomplex of sheaves.
+\end{secprop}
+\begin{proof}
+	$d^2=0$ and $d= \partial + \bar{\partial}$ imply that for all $(p,q)$-form $\alpha$ we have \[
+	\partial^2(\alpha) + \bar{\partial}^2(\alpha) + \partial \bar{\partial} + \bar{\partial} \partial (\alpha) =0
+	\]
+	However, $\partial^2(\alpha)$ is $(p+2,q)$-form, $\bar{\partial}^2(\alpha)$ is $(p,q+2)$-form and $\partial \bar{\partial} + \bar{\partial}\partial (\alpha)$ is $(p+1, q+1)$-form. Hence these three components are all zero.
+\end{proof}
+\subsection{K\"ahler manifolds and Hodge decomposition}
+\begin{secdefn}
+	Suppose $(X,I)$ be almost complex manifold and $g$ be some Riemannian metric of $X$. If $g$ satisfies\[
+	g_x(I(\alpha),I(\beta))=g_x(\alpha,\beta)
+	\]
+	for any point $x \in X$ and $\alpha, \beta \in T_xX$, then $g$ is called \textbf{hermitian structure} on $X$ and $X$ is called hermitian manifold. The induced real (1,1)-form $\omega(-,-) := g(I(-),(-))$ is called \textbf{fundamental form}.
+\end{secdefn}
+It is not hard to see fundamental form $\omega$ is determined by Riemannian metric $g$ and almost complex structure $I$. Locally, it has coordinate representative 
+\[
+\omega = \frac{i}{2}\sum_{i,j} h_{ij} z_i \wedge \bar{z}_j
+\]
+where $(h_{ij})$ is positive defined matrix at each point.
+\begin{secdefn}
+	Suppose $(X,I,g)$ be an hermitian manifold. If $\mathrm{d}\omega = 0$, then $g$ is called K\"ahler structure. $X$ is called a K\"ahler manifold if it is with a K\"ahler structure $g$. 
+\end{secdefn}
+
+\begin{secdefn}
+	If $(X,g)$ is an hermitian manifold, then 
+	\[
+	\begin{aligned}
+	\partial^*:= - * \circ \bar{\partial} \circ * \ \text{ and }\ \bar{\partial}^*:= -* \circ \partial \circ *\\
+	\end{aligned}
+	\]
+	where $*$ is Hodge operator.
+\end{secdefn}
+\begin{rem}
+	If $X$ is of dimension $m$, then we have 
+	\[d^* = (-1)^{m(k+1)+1} * \circ d \circ * \colon \mathcal{A}^k(X) \to \mathcal{A}^{k-1}(X) \]
+	hence $X$ is complex manifold implies that $m$ is even and $X$ itself is integrable, so $d^* = -*\circ d \circ *$ and 
+	\[
+	d^* = \partial^* + \bar{\partial}^* 
+	\]
+	Furthermore, $\partial^*$ and $\bar{\partial}^*$ are formal adjoint operators of $\partial$ and $\bar{\partial}$ respectively. We get two Laplace operators
+	\[
+	\begin{aligned}
+	\Delta_{\partial}:= \partial \partial^* + \partial^* \partial&& \text{and}&& \Delta_{\bar{\partial}}:= \bar{\partial} \bar{\partial}^* + \bar{\partial}^* \bar{\partial}
+	\end{aligned}
+	\]
+	They are both $\mathbb{C}$-linear operator on all $\mathcal{A}^{p,q}$ which preserves bidegree due to their definition.
+\end{rem}
+
+Since $(\mathcal{A}^{*,*},\partial, \bar{\partial})$ are bicomplex, using Hodge theorem on compact Riemannian manifold, we have following two decompositions of $\mathcal{A}^{*,*}$
+\begin{align}
+&\mathcal{A}^{p,q}(X)= \mathcal{H}^{p,q}_{\partial}(X) \oplus \im {\partial} \oplus \im {\partial}^*\\
+&\mathcal{A}^{p,q}(X)= \mathcal{H}^{p,q}_{\bar{\partial}}(X) \oplus \im \bar{\partial} \oplus \im \bar{\partial}^* 
+\end{align}
+If $(X,g)$ is K\"ahler manifold, then we have $\Delta_d= 2 \Delta_{\bar{\partial}} = 2 \Delta_{\partial}$, which is known as one of K\"ahler identities. Hence $\mathcal{H}^{p,q}_{\partial}(X)= \mathcal{H}^{p,q}_{\bar{\partial}}(X) \cong H^{p,q}(X)$, where $H^{p,q}(X)$ is $(p,q)$-Dolbeault cohomology of $X$. Hence conjugation between $\mathcal{H}^{p,q}_{\partial}(X)$ and $\mathcal{H}^{q,p}_{\bar{\partial}}(X)$ implies that $\overline{H^{q,p}(X)} = H^{p,q}(X)$. It is called \textbf{Hodge symmetry}.
+\begin{seccor}
+For compact K\"ahler manifold $X$, we have following decomposition of cohomology group
+\begin{equation}
+H^k(X, \mathbb{C}) = \bigoplus_{p+q=k}H^{p,q}(X)
+\end{equation}
+
+Furthermore, we have Hodge symmetry $H^{p,q}(X) = \overline{H^{q,p}(X)}$ with respect to conjugation.
+\end{seccor}
+
+We have gotten Hodge decomposition (including Hodge symmetry) in K\"ahler case as so far. In general case, Hodge decomposition is proved by Deligne for projective manifolds without Hodge symmetry, which is purely algebraic proof. In more formal language, Hodge decomposition is equivalent to fact that $k$-th rational cohomology group $H^k(X, \mathbb{Q})$ is with rational Hodge structure of weight $k$.
+\begin{secprop}
+	Odd Betti numbers $b_{2i+1}$ of compact K\"ahler manifolds are even.
+\end{secprop}
+\begin{proof}
+	On compact K\"ahler manifolds, we have following formula about Betti numbers from Hodge decomposition
+	\begin{equation}
+		b_{k}= \sum_{p+q=k}h^{p,q}
+	\end{equation}
+	If $k=2i+1$, then 
+	\[
+	b_{k}= \sum_{r=0}^{i}h^{r,k-r} + \sum_{r=i+1}^{k}h^{r,k-r}
+	\]
+	But Hodge symmetry implies that 
+	\[
+	\sum_{r=i+1}^{k}h^{r,k-r}= \sum_{r=0}^{i}h^{k-r,r} =\sum_{r=0}^{i}h^{r,k-r}
+	\]
+	Hence 
+	\[
+	b_k= 2\sum_{r=0}^{i}h^{r,k-r}
+	\]
+	is even.
+\end{proof}
+
+\begin{seccor}
+	Hopf surfaces are compact complex manifold but not K\"ahler.
+\end{seccor}
+\begin{proof}
+	Since Hopf surface $H_\lambda$ is obtained by $\mathbb{C}^2 \backslash\{0\}$ under action of $\mathbb{Z}$
+	\[
+	k : (z_1, z_2) \mapsto (\lambda^k z_1, \lambda^k z_2)
+	\]
+	for fixed $0 < \lambda <1$.
+	This action is free, hence fundamental group $\pi_1(H_\lambda)= \mathbb{Z}$, since $\mathbb{C}^2\backslash\{0\}$ is contractible space. By Hurwitz's theorem, $H^1(H_\lambda;\mathbb{Z})= \mathbb{Z}$, so $b_1(H_\lambda)=1$. It contradicts to fact that odd Betti numbers of compact K\"ahler manifolds are even. Hence Hopf surfaces are not K\"ahler. 
+\end{proof}
+
+\begin{rem}
+	More discussion about complex geometry and Hodge theory in K\"ahler case can be found in \cite{Huybrechts2004,Griffiths1994}
+\end{rem}
+\section{Hodge structures}
+\begin{secdefn}
+A Hodge structure of weight $k \in \mathbb{Z}$ consists of following datum
+\begin{itemize}
+\item $H_{\mathbb{Z}}$ is a lattice
+\item For $H_{\mathbb{C}}:= H_{\mathbb{Z}} \otimes \mathbb{C}$, we have bidegree decomposition
+\[
+H_{\mathbb{C}}= \bigoplus_{p+q=k} H^{p,q}
+\]
+satisfying $H^{p,q}= \overline{H^{q,p}}$ under conjugation.
+\end{itemize}
+\end{secdefn}
+In most case, we consider $H_{\mathbb{Z}}$ without torsion. It is equivalent to take the image of $H_{\mathbb{Z}}$ in $H_{\mathbb{Q}}:= H_{\mathbb{Z}}\otimes_{\mathbb{Z}} \mathbb{Q}$.
+
+ Given two Hodge structures $(H_{\mathbb{Z}}, \{ H^{p,q}\})$ and $(H'_{\mathbb{Z}}, \{ H'^{p,q}\})$, if $f \colon H_{\mathbb{Z}} \to H'_{\mathbb{Z}}$ is morphism between lattice, then $f$ can be extended to $f_\mathbb{C} \colon H_{\mathbb{C}} \to H'_{\mathbb{C}}$. We say $f$ is morphism between Hodge structure if $f_\mathbb{C}$ is $\mathbb{C}$-linear map with bidegree $(0,0)$, i.e.\ $f_{\mathbb{C}}(H^{p,q}) \subseteq H'^{p,q}$.
+ \begin{seclemma}
+ 	Let $f \colon X \to Y$ be morphism between compact K\"ahler manifolds $X$ and $Y$. Then pull-back 
+ 	\[f^* \colon H^*(Y;\mathbb{Z}) \to H^*(X;\mathbb{Z})\] 
+ 	and push-forward
+ 	\[
+ 	f_* \colon H^*(X;\mathbb{Z}) \to H^*(Y;\mathbb{Z})
+ 	\]
+ 	are both morphisms between Hodge structures of weight $*$. 
+ \end{seclemma}
+ \begin{secprop}
+ All Hodge structures of weight $k$ together with Hodge morphisms (morphisms between Hodge structures) form an Abelian category.
+ \end{secprop}
+ \subsection{Hodge structures of blow-ups}
+ With Hodge decomposition, integral cohomology groups of compact K\"ahler manifold are Hodge structures. Hence, we can consider Hodge structure under blow-up since blow-up of compact K\"ahler manifolds are compact K\"ahler too, see \cite{Voisin2008}.
+
+Suppose $j \colon Z \to X$ be submanifold of compact K\"ahler manifold $X$ with codimension $r$ and $r \geq 2$. If $\sigma \colon Bl_{Z}(X) \to X$ is blow-up of $X$ along $Z$, then 
+\[
+\sigma|_E \colon E:= \sigma^{-1}(Z)\subset Bl_Z(X) \to X
+\]
+is projective bundle of rank $r-1$. $E$ is called exceptional divisor of blow-up $\sigma$ and $E \cong \mathbb{P}(\mathcal{N}_{Y/X})$. Put $U'=Bl_Z(X) \backslash E$ and $U= X\backslash Z$. Properties of blow-up implies that $U'$ is biholomorphic to $U$. It induces morphism between relative pairs $(Bl_Z(X), U')$ and $(X,U)$, hence there is morphism between following long exact sequences of relative cohomology groups
+\[
+\xymatrix{
+&H^{n-1}(U;\mathbb{Z})\ar[r] \ar[d]^{\simeq}& H^{n}(X,U;\mathbb{Z}) \ar[r] \ar[d]& H^{n}(X;\mathbb{Z}) \ar[r] \ar[d]&H^n(U;\mathbb{Z}) \ar[d] \\
+&H^{n-1}(U';\mathbb{Z}) \ar[r]&H^{n}(Bl_Z(X),U';\mathbb{Z}) \ar[r]& H^{n}(Bl_Z{X};\mathbb{Z}) \ar[r]& H^n(U';\mathbb{Z})
+}
+\]
+Since following diagram is pull-back
+\[
+\xymatrix{
+E \ar[r] \ar[d]& Bl_Z(X) \ar[d]&\\
+Z \ar[r] & X&
+}
+\]
+we have following blow-up sequence
+\[
+\cdots \rightarrow H^{n-1}(E;\mathbb{Z}) \rightarrow H^{n}(X;\mathbb{Z}) \rightarrow H^{n}(Z;\mathbb{Z}) \oplus H^{n}(Bl_Z(X);\mathbb{Z}) \rightarrow H^n(E;\mathbb{Z}) \rightarrow \cdots
+\]
+Moreover, if $Z$ is closed submanifold, then the connecting map is trivial, which implies that 
+\begin{equation}
+\label{h1}
+H^n(Bl_Z(X);\mathbb{Z}) \oplus H^n(Z;\mathbb{Z}) \cong H^n(X;\mathbb{Z}) \oplus H^n(E;\mathbb{Z}) 
+\end{equation}
+and these isomorphisms are induced by pull-back, so they are also isomorphisms between Hodge structures. Since 
+\[
+\sigma|_E \colon E = \mathbb{P}(\mathcal{N}_{Z/X}) \to Z
+\]
+is projective bundle of rank $r-1$, graded ring $H^*(E;\mathbb{Z})$ is free module of $H^*(Z;\mathbb{Z})$ with generators $\{h^i \}$, where $h= c_1(\sheaf{E}(1)) \in H^{1,1}(E;\mathbb{Z})$. Together with \ref{h1}, we get a formula of Hodges structure for blow-up
+\begin{equation}
+\label{cons1}
+H^*(Bl_Z(X)) \cong H^*(X) \bigoplus_{i=1}^{r-1}H^{*-2i}(Z;\mathbb{Z})(i,i)
+\end{equation}
+\begin{warn}
+	This formula appears in \cite{Voisin2008} but there seem be some gaps in this proof.
+\end{warn}
+
+
+
+In version of Hodge numbers, we have
+\begin{equation}
+\label{hodgenum1}
+h^{p,q}(Bl_Z(X))= h^{p,q}(X) + \sum_{i=1}^{r-1}h^{p-i,q-i}(Z) 
+\end{equation}
+
+\subsection{Hodge filtrations}
+In this section, we will give another definition of Hodge structure. Of course, it coincides with previous one and is more convenient.
+\begin{secdefn}
+	Let $(M^*,d) \in \pch(R)$ be a positive cochain complex of $R$-modules. We say $\{F^*M^*\}$ is a decreasing filtration of $(M^*,d)$ if for all $i \geq 0 , j \geq 0$
+	\[
+	\begin{aligned}
+	F^{i+1}M^j \subseteq F^{i}M^j& & d(F^iM^j) \subseteq F^iM^{j+1}
+	\end{aligned}
+	\]
+\end{secdefn}
+Given positive graded $R$-module, we can consider it as cochain complex with trivial differential. Hence this definition of filtration is also suitable for graded modules. Put $(H_\mathbb{Z}^k, \{H^{p,q}\})$ is Hodge structure of weight $k$, we define
+\begin{equation}
+	F^iH_{\mathbb{C}}^k:= \bigoplus_{r \geq i}H^{r,k-r}
+\end{equation}
+It is easy to see $\{F^i\}$ is decreasing filtration for $H_{\mathbb{Z}}^k$. This is called \textbf{Hodge filtration} for given Hodge structure.
+
+With Hodge filtration, we can recover Hodge structure as follows
+\begin{align}
+	\label{hodf1}
+	& &H^{p,q}= F^{p}H_{\mathbb{C}}^k \cap \overline{F^q H_{\mathbb{C}}^k} && \text{for}\ p+q=k
+\end{align}
+and 
+\begin{align}
+	\label{hodf2}
+	& &H_\mathbb{C}^k= F^p H^k_\mathbb{C} \oplus  \overline{F^{q+1}H^k_{\mathbb{C}}}& &\text{for}\ p+q=k
+\end{align}
+
+\begin{secdefn}
+	An Hodge structure of weight $k$ consists of following datum
+	\begin{itemize}
+		\item An lattice $H_\mathbb{Z}$
+		\item An filtration $F^*$ for $H_\mathbb{C}:= H_\mathbb{Z} \otimes \mathbb{C}$ satisfying equation \ref{hodf2} for all $p+q=k$.
+	\end{itemize}
+\end{secdefn}
+
+\begin{ex}[Tate-Hodge structure]
+	Let 
+	\begin{align}
+		\mathbb{Z}(1)= 2\pi i \mathbb{Z}& & \mathbb{Z}_{\mathbb{C}}(1)= H^{-1,-1}
+	\end{align}
+	We can see $(\mathbb{Z}(1), H^{-1,1})$ is Hodge structure of weight $-2$ and rank $1$. Denote $\mathbb{Z}(m)= \mathbb{Z}(1)^{\otimes m}$ the $n$   times self-tensor product of $\mathbb{Z}(1)$ as Hodge structure. $\mathbb{Z}(m)$ is Hodge structure of weight $-2m$. If $(H_\mathbb{Z}, \{ H^{p,q}\})$ is given Hodge structure of weight $k$, then we define $m$-th Tate twist of $H_\mathbb{Z}$ by
+	\[
+	H_\mathbb{Z}(m):= H_\mathbb{Z} \otimes \mathbb{Z}(m)
+	\] 
+	It is Hodge structure of weight $k-2m$. 
+\end{ex}
+
+\subsection{Hodge structures for non-singular compact complex varieties}
+Suppose $X$ be an complex variety of dimension $n$. We can define following filtration on its algebraic de Rham complex
+\begin{equation}
+	F^p \Omega^*_{X}:= 0 \rightarrow \cdots \rightarrow \Omega_X^p \rightarrow \Omega_X^{p+1} \rightarrow \cdots \rightarrow \Omega_X^n
+\end{equation}
+Since this filtration on complex is regular, i.e.\ $F^p \Omega_X^* = 0$ for all $p > n$, it induces a spectral sequence $(E^{p,q}_r(X), d_r)$ converges to hypercohomolgy $\mathbb{H}^*(X, \Omega_X^*)$, with convergence theorem of spectral sequences. This spectral sequence is called \textbf{Hodge-de Rham spectral sequence} for $X$. The first term of Hodge-de Rham spectral sequence is as follows
+\begin{align}
+	E^{p,q}_1 = \mathbb{H}^{p+q}(X,\gr^p_F \Omega_X^*) \cong H^q(X, \Omega_X^p)& & d_1 \colon E^{p,q}_1 \to E^{p+1,q}_1
+\end{align}
+where the first isomorphism comes from Cartan-Eilenberg resolution. If $(E_r^{p,q},d_r)$ degenerates at rank $1$, then 
+\begin{equation}
+	\hyper^{p+q}(X, \gr^{p}_F \Omega_X^*) \cong \gr^{p}_F  \hyper^{p+q}(X, \Omega_X^*)
+\end{equation}
+In equivalent statement, 
+\begin{equation}
+	F^{p+1}\hyper^{p+q}(X,\Omega_X^*) \oplus H^{q}(X, \Omega^p) \cong F^p\hyper^{p+q}(X, \Omega_X^*) \subseteq H^{p+q}(X; \mathbb{C})
+\end{equation}
+By induction, we can get 
+\[
+F^{p}\hyper^{p+q}(X,\Omega_X^*) \cong \bigoplus_{i \geq p}H^{p+q-i}(X,\Omega_X^i)
+\]
+It implies that dimension of $H^{k}(X;\mathbb{C})$ is equal to that of $\oplus_{p+q=k}H^q(X, \Omega_X^p)$ as $\mathbb{C}$-linear space. This fact implies that the degeneracy of Hodge-de Rham spectral sequence is very closed Hodge decomposition without Hodge symmetry. Or equivalently, we only need to check \ref{hodf2} and lift $H^q(X,\Omega_X^p)$ as subspaces of $H^n(X;\mathbb{C})$ with formula \ref{hodf1}.
+\begin{secthm}[Deligne]
+	Let $X$ be a non-singular compact complex varieties. Then Hodge-de Rham spectral sequence of $X$ degenerates at rank $1$ and it induces Hodge structure on the cohomology of $X$.
+\end{secthm}
+\begin{proof}
+	We will give a sketch of proof here. Detailed proof can be found in \cite{Cattani2014} or original papers of P.Deligne \cite{Deligne1971,Deligne1974}.
+	\begin{itemize}
+		\item[Step 1] Hodge-de Rham spectral sequence degenerates at rank 1
+		\[
+		E_1^{p,q}= \hyper^{p+q}(X, F^p \Omega^*_X) \Rightarrow \hyper^{n}(X, \Omega^*_X)
+		\]
+		\begin{enumerate}
+			\item{projective case:}
+			
+			GAGA principle implies that $\hyper^{n}(X, \Omega^*_{\text{alg}}) \cong \hyper^{n}(X, \Omega^*_{\text{an}})$. Hence we can view $X$ as projective manifold. With Hodge decomposition in K\"ahler case, we can get the degeneracy of Hodge-de Rham spectral sequence at rank 1.
+			\item{non-projective case:} 
+			
+			We can find a birational map $f: X' \dashrightarrow X$ with $X'$ smooth projective variety. With Grothendieck-Verdier duality, we can find dual map $f^!\colon Rf_*\Omega_{X'}^* \to \Omega_X^*$ up to homotopy. Composed with degeneracy of Lerray spectral sequence, we can get $E_r^{p,q}(f^!) \circ f^* \simeq id$ up to spectral sequence level. Hence
+			\begin{equation}
+				f^* \colon E_r^{p,q}(X) \to E_r^{p,q}(X')
+			\end{equation}
+			is injective and commutes with each $d_r$. Moreover, degeneracy of $(E_r^{p,q}(X'),d_r)$ implies that of $(E_r^{p,q}(X),d_r)$. Hence Hodge-de Rham spectral sequence of $X$ also degenerates at rank $1$.
+		\end{enumerate}
+		\item[Step 2] The induced filtration of spectral sequence is actually Hodge structure, i.e.\ 
+		\[
+		H^{n}(X;\mathbb{C}) = F^{p}\hyper^n(X, \Omega_X^*) \oplus \overline{F^{n-p+1}\hyper^{n}(X,\Omega_X^*)}
+		\]
+		Actually, 
+		\[
+		f^* \colon F^{p}\hyper^n(X, \Omega_X^*) \oplus \overline{F^{n-p+1}\hyper^{n}(X,\Omega_X^*)} \to F^{p}\hyper^n(X', \Omega_{'}^*) \oplus \overline{F^{n-p+1}\hyper^{n}(X',\Omega_{X'}^*)}
+		\]
+		is injective, so $H'=F^{p}\hyper^n(X, \Omega_X^*) + \overline{F^{n-p+1}\hyper^{n}(X,\Omega_X^*)}$ is direct sum.
+		
+		Let $\dim_{\mathbb{C}}H^q(X,\Omega^p_X) = h^{p,q}$ and $dim_\mathbb{C}X = N$. By Serre's duality, we have 
+		\begin{equation}
+			H^{q}(X, \Omega_X^p) \cong H^{N-q}(X, \Omega_X^{N-p})^*
+		\end{equation}
+		which implies $h^{p,q}= h^{N-p,N-q}$. The degeneracy of Hodge-de Rham spectral sequence implies
+		\begin{equation}
+			\dim_{\mathbb{C}} H' = \sum_{i \geq p} h^{i,n-i} + \sum_{j \geq n-p+1 }h^{j,n-j} \leq \dim_{\mathbb{C}} H^n(X;\mathbb{C}) = \sum_{i \geq 0}h^{i,n-i}
+		\end{equation}
+		Hence 
+		\begin{align}
+			\sum_{i \geq p}h^{i,n-i} &\leq \sum_{j \leq n-p}h^{j,n-j}\\
+			\label{eq2}
+			\sum_{N-i \leq N-p}h^{N-i,N-n+i} &\leq \sum_{N-j \geq N-n+p}h^{N-j,N-n+j}
+		\end{align}
+		Replace $i$ by $ N-j$,$j$ by $N-i$ and $p$ by $N-n+p$ in \ref{eq2}. We get $\sum_{j \leq n-p}h^{j,n-j} \leq \sum_{i \geq p}h^{i, n-i}$. Hence $\sum_{i \geq p}h^{i,n-i} = \sum_{j \leq n-p} h^{j,n-j}$ and $\dim_{\mathbb{C}}H' = \dim_{\mathbb{C}}H^{n}(X;\mathbb{C})$. This completes out proof of that induced filtration
+		\[
+		F^{p}\hyper^{p+q}(X, \Omega_X^*) = \bigoplus_{i \geq p} H^{p+q-i}(X,\Omega^i_X)
+		\]
+		is actually Hodge structure of weight $p+q$.
+	\end{itemize}	
+\end{proof}
+\begin{rem}
+	In this section, we use some results famous in theory of spectral sequences and derived categories, readers can find them in \cite{Hirzebruch1995,McCleary2000,Hartshorne1977,Griffiths1994}
+\end{rem}
+\section{Hodge classes and Hodge conjecture}
+In this section, we will introduce the notion of Hodge class and give a statement of Hodge conjecture, which claims that all Hodge class of non-singular complex varieties are algebraic. Let $X$ be an non-singular complex variety and $(H^n(X;\mathbb{Q}),F^*)$ is its Hodge structure on rational cohomology. Let $H^{p,q}(X;\mathbb{Q})$ be $(p,q)$ type rational cohomology class, i.e./ image of injection
+\begin{equation}
+	H^{p+q}(X;\mathbb{Q}) \hookrightarrow H^{p,q}(X) \subseteq H^{p+q}(X;\mathbb{C})
+\end{equation}
+\begin{secdefn}
+	Suppose $k$ be an integer. A \textbf{rational Hodge class} of $k$ type $[\omega]$ is a $(k,k)$-rational cohomology class in $H^{k,k}(X)$. The group of $k$-Hodge class is denoted by $\hdg^k(X)$.
+\end{secdefn}
+Suppose $Z \subseteq X$ be an smooth subvariety with codimension $r$. View $Z$ as analytic submanfold $Z_\text{an}$ of $X_\text{an}$. For any $(2n-2r)$-class $[\omega] \in H^{2n-2r}(X;\mathbb{C})$, we have
+\begin{align*}
+\cl(Z):H^{2n-2r}(X;\mathbb{C}) \rightarrow \mathbb{C}\\
+[\omega] \mapsto \int_{Z} \omega_{|Z}
+\end{align*}
+Hence we have defined $\cl(Z) \in H^{2n-2r}(X;\mathbb{C})^*$. If $Z$ is not smooth, we can replace it by its desingularization $Z'$ which is birational to $Z$. Since $Z$ is analytic manifold, the integral of $\omega|_Z$ which have no part of type $(n-r,n-r)$ vanishes. Hence $\cl(Z) \in H^{n-r,n-r}(X; \mathbb{C})$.
+With Poincar\'e duality, we can defined unique dual class $[\eta_Z] \in H^{2r}(X;\mathbb{C})$ which must to be of type $(r,r)$ since Hodge structures are compatible with Poincar\'e dual. $[\eta_Z]$ is called \textbf{fundamental class} of $Z$.
+If $X$ is compact K\"ahler manifold, then we have following 
+\begin{equation}
+	\int_{X} \wedge^{2n}\omega >0 
+\end{equation}
+where this $\omega$ is K\"ahler form. Hence $H^{r,r}(X;\mathbb{C}) \neq 0$ since $H^*(X;\mathbb{C})$ is torsion free under cup product.
+Actually, we can claim that each fundamental class $[\eta_Z]$ compatible with Poincar\'e dual of singular class $[i_*Z] \in H_{2n-2r}(X;\mathbb{Z})$. Hence we can define $\mathbb{Q}$-linear map
+\begin{align*}
+	\clq \colon Z_r(X) \to H^{r,r}(X;\mathbb{Q})=\hdg^r(X)\\
+	\sum_i n_i Z_r \mapsto \sum_i n_i [\eta_{Z_i}]	
+\end{align*}
+where $Z_r(X)$ is group of $r$-cycles of $X$.
+
+\textbf{Hodge conjecture} claims that for smooth complex variety $X$. $\mathbb{Q}$-linear map $\clq$ is surjective. That means all Hodge class of $X$ are comes from algebraic cycles. This is motivated by $(1,1)$-type Lefschetz theorem since this theorem proves that 
+\[
+\pica(X) \rightarrow H^{1,1}(X;\mathbb{Z})
+\]
+is surjective.
+\newpage	
+\begin{quote}
+	Copyright \copyright{}  2018  ThinkCat.
+	Permission is granted to copy, distribute and/or modify this document
+	under the terms of the GNU Free Documentation License, Version 1.3
+	or any later version published by the Free Software Foundation;
+	with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+	A copy of the license is included in the section entitled ``GNU
+	Free Documentation License''.
+\end{quote}
+
+\bigskip
+\bibliography{library-ref}
+\bibliographystyle{plain}
+\newpage
+\end{document}
