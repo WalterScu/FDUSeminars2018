@@ -1,18 +1,20 @@
 % !TEX root=hodge.tex
-\documentclass{amsart}
+\documentclass[oneside,a4paper]{amsart}
 \usepackage{euler}
 \usepackage{times}
 \usepackage[all]{xy}
+\usepackage{cite}
 \usepackage{notestemplate}
 \usepackage[utf8]{inputenc}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Hodge Theory}
 \author{ThinkCat}
-\date{2018.02}
+\date{\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \maketitle
 \tableofcontents
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hodge Decomposition for Real Manifolds}
 Suppose $(X,g)$ be an $n$-dimensional manifold with Riemannian metric $g$ and $\Omega^k (X)$ be the bundle of $k$-forms of $X$, $A^k (X)$ be the space of differential forms of degree $k$ on $X$.
 
@@ -28,7 +30,7 @@ Since have already defined a metric on $A^*(X)$,  we can also give formal adjoin
 $$
 (\alpha, d\beta)=(d^*\alpha, \beta)
 $$
-where $\alpha \in A^{k+1}(X), \beta \in A^k(X)$. It is accessible because $A^k(X)$ is finitely dimensional $\mathbb{R}$-vector space point-wise as $X$ is $n$-dimensional manifold so that we can define $d^* \alpha$ point-wise and then glue them into global differential form by unit partition.
+where $\alpha \in A^{k+1}(X), \beta \in A^k(X)$. It is accessible because $A^k(X)$ is Hilbert space with $L^2$-metric so that we can define $d^* \alpha$ with Riesz representation theorem.
 
 \subsection{Laplacian operators and Harmonic forms}
 Let $\omega \in $. If $\omega \in A^k(X)$ satisfies
@@ -409,19 +411,19 @@ It implies that dimension of $H^{k}(X;\mathbb{C})$ is equal to that of $\oplus_{
 	Let $X$ be a non-singular compact complex varieties. Then Hodge-de Rham spectral sequence of $X$ degenerates at rank $1$ and it induces Hodge structure on the cohomology of $X$.
 \end{secthm}
 \begin{proof}
-	We will give a sketch of proof here. Detailed proof can be found in \cite{Cattani2014} or original papers of P.Deligne \cite{Deligne1971,Deligne1974}.
+	We will give a sketch of proof here. Detailed proof can be found in \cite[Thm 3.1.14]{Cattani2014} or original papers of P.Deligne \cite{Deligne1971,Deligne1974}.
 	\begin{itemize}
 		\item[Step 1] Hodge-de Rham spectral sequence degenerates at rank 1
 		\[
 		E_1^{p,q}= \hyper^{p+q}(X, F^p \Omega^*_X) \Rightarrow \hyper^{n}(X, \Omega^*_X)
 		\]
 		\begin{enumerate}
-			\item{projective case:}
-			
+			\item{\bf projective case:}
 			GAGA principle implies that $\hyper^{n}(X, \Omega^*_{\text{alg}}) \cong \hyper^{n}(X, \Omega^*_{\text{an}})$. Hence we can view $X$ as projective manifold. With Hodge decomposition in K\"ahler case, we can get the degeneracy of Hodge-de Rham spectral sequence at rank 1.
-			\item{non-projective case:} 
-			
-			We can find a birational map $f: X' \dashrightarrow X$ with $X'$ smooth projective variety. With Grothendieck-Verdier duality, we can find dual map $f^!\colon Rf_*\Omega_{X'}^* \to \Omega_X^*$ up to homotopy. Composed with degeneracy of Lerray spectral sequence, we can get $E_r^{p,q}(f^!) \circ f^* \simeq id$ up to spectral sequence level. Hence
+			\item{\bf non-projective case:} 
+			We can find a birational map $f: X' \dashrightarrow X$ with $X'$ smooth projective variety. With Grothendieck-Verdier duality, we can find dual map 
+			\[f^!\colon Rf_*\Omega_{X'}^* \to \Omega_X^*\]
+			 up to homotopy. Composed with degeneracy of Lerray spectral sequence, we can get $E_r^{p,q}(f^!) \circ f^* \simeq id$ up to spectral sequence level. Hence
 			\begin{equation}
 				f^* \colon E_r^{p,q}(X) \to E_r^{p,q}(X')
 			\end{equation}
@@ -506,6 +508,6 @@ is surjective.
 
 \bigskip
 \bibliography{library-ref}
-\bibliographystyle{plain}
+\bibliographystyle{amsalpha}
 \newpage
 \end{document}
