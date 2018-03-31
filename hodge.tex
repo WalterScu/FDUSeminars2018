@@ -1,5 +1,5 @@
 % !TEX root=hodge.tex
-\documentclass[oneside,a4paper]{amsart}
+\documentclass[11pt,oneside,a4paper]{amsbook}
 \usepackage{euler}
 \usepackage{times}
 \usepackage[all]{xy}
@@ -7,7 +7,7 @@
 \usepackage{notestemplate}
 \usepackage[utf8]{inputenc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Hodge Theory}
+\title{Hodge Theory and Algebraic Cycles}
 \author{ThinkCat}
 \date{\today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -15,6 +15,7 @@
 \maketitle
 \tableofcontents
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Hodge Theory}
 \section{Hodge Decomposition for Real Manifolds}
 Suppose $(X,g)$ be an $n$-dimensional manifold with Riemannian metric $g$ and $\Omega^k (X)$ be the bundle of $k$-forms of $X$, $A^k (X)$ be the space of differential forms of degree $k$ on $X$.
 
@@ -75,19 +76,19 @@ Similarly, we can also prove $(d^*(\omega),d^*(\omega) ) =0$. Hence $\omega \in 
 \end{seccor}
 
 \section{Hodge theory in K\"ahler case}
-Let $(X,I)$ be an almost complex manifold. Linear algebra tell us that almost complex structure induces canonical $\mathbb{C}$-linear decomposition of complexed tangent space
+Let $(X,I)$ be an almost complex manifold. Linear algebra tell us that almost complex structure induces canonical $\mathbb{C}$-linear decomposition of complexed tangent bundle
 \[
 T_{X,\mathbb{C}}= T_{X}^{1,0} \oplus T_X^{0,1}
 \]
-where $T_X^{1,0}$ and $T_X^{0,1}$ are eigenvector spaces associated to eigenvalues $i$ respectively $-i$ of $I$. Hence, if we take the dual space of $T_{X,\mathbb{C}}$, then we can get $\mathbb{C}$-linear decomposition of differential forms
+where $T_X^{1,0}$ and $T_X^{0,1}$ are eigenvector spaces associated to eigenvalues $i$ respectively $-i$ of $I$ at each point of $X$. Hence, if we take the dual of $T_{X,\mathbb{C}}$ point wise, then we can get $\mathbb{C}$-linear decomposition of cotangent bundle
 \[
-\Omega_{X,\mathbb{C}} = \Omega_X^{1,0} \oplus \Omega_X^{0,1}
+T_{X,\mathbb{C}}^* = (T_X^{1,0})^* \oplus (T_X^{0,1})^*
 \]
-Hence respect to tensor product of $\mathbb{C}$-linear spaces, we have bidegreed decomposition of complex de Rham complex on $X$
+ Hence respect to wedge product of $\mathbb{C}$-linear spaces, we have bidegreed decomposition of bundles on $X$
 \[
-\Omega^k_{\mathbb{C}} = \bigoplus_{p+q=k}\bigwedge^p \Omega_X^{1,0} \otimes \bigwedge^q \Omega_X^{0,1}
+\wedge^k(T_{X,\mathbb{C}}) = \bigoplus_{p+q=k}\wedge^p (T_X^{1,0})^* \otimes \wedge^q (T_{X}^{0,1})^*
 \]
-Denote $\bigwedge^p \Omega_X^{1,0} \otimes \bigwedge^q \Omega_X^{0,1}$ by $\Omega^{p,q}_X$ and their sheaves of sections by $\mathcal{A}^k_{X,\mathbb{C}}$ and $\mathcal{A}^{p,q}_{X}$. Hence we have projection maps
+Denote $\wedge^k(T_{X,\mathbb{C}}^*)$ and $\wedge^p(T_X^{1,0})^* \otimes \wedge^q(T_X^{0,1})^*$  by $\wedge^k X$ and $\wedge^{p,q}X$, and sheaves of their sections by $\mathcal{A}^k_{X,\mathbb{C}}$ and $\mathcal{A}^{p,q}_{X}$. Hence we have projection maps
 \[
 \varphi^{p,q}: \mathcal{A}^{k}_{X,\mathbb{C}} \rightarrow \mathcal{A}^{p,q}_X
 \]
@@ -226,7 +227,7 @@ We have gotten Hodge decomposition (including Hodge symmetry) in K\"ahler case a
 	Odd Betti numbers $b_{2i+1}$ of compact K\"ahler manifolds are even.
 \end{secprop}
 \begin{proof}
-	On compact K\"ahler manifolds, we have following formula about Betti numbers from Hodge decomposition
+	On compact K\"ahler manifolds, we have following formula about Betti numbers from Hodge decomposition.
 	\begin{equation}
 		b_{k}= \sum_{p+q=k}h^{p,q}
 	\end{equation}
@@ -378,7 +379,7 @@ and
 	\begin{align}
 		\mathbb{Z}(1)= 2\pi i \mathbb{Z}& & \mathbb{Z}_{\mathbb{C}}(1)= H^{-1,-1}
 	\end{align}
-	We can see $(\mathbb{Z}(1), H^{-1,1})$ is Hodge structure of weight $-2$ and rank $1$. Denote $\mathbb{Z}(m)= \mathbb{Z}(1)^{\otimes m}$ the $n$   times self-tensor product of $\mathbb{Z}(1)$ as Hodge structure. $\mathbb{Z}(m)$ is Hodge structure of weight $-2m$. If $(H_\mathbb{Z}, \{ H^{p,q}\})$ is given Hodge structure of weight $k$, then we define $m$-th Tate twist of $H_\mathbb{Z}$ by
+	We can see $(\mathbb{Z}(1), H^{-1,-1})$ is Hodge structure of weight $-2$ and rank $1$. Denote $\mathbb{Z}(m)= \mathbb{Z}(1)^{\otimes m}$ the $n$   times self-tensor product of $\mathbb{Z}(1)$ as Hodge structure. $\mathbb{Z}(m)$ is Hodge structure of weight $-2m$. If $(H_\mathbb{Z}, \{ H^{p,q}\})$ is given Hodge structure of weight $k$, then we define $m$-th Tate twist of $H_\mathbb{Z}$ by
 	\[
 	H_\mathbb{Z}(m):= H_\mathbb{Z} \otimes \mathbb{Z}(m)
 	\] 
@@ -469,9 +470,9 @@ In this section, we will introduce the notion of Hodge class and give a statemen
 	H^{p+q}(X;\mathbb{Q}) \hookrightarrow H^{p,q}(X) \subseteq H^{p+q}(X;\mathbb{C})
 \end{equation}
 \begin{secdefn}
-	Suppose $k$ be an integer. A \textbf{rational Hodge class} of $k$ type $[\omega]$ is a $(k,k)$-rational cohomology class in $H^{k,k}(X)$. The group of $k$-Hodge class is denoted by $\hdg^k(X)$.
+	Suppose $k$ be an integer. A \textbf{rational Hodge class} of $k$ type $[\omega]$ is a $(k,k)$-rational cohomology class in $H^{k,k}(X)$. The group of rational Hodge class of type $k$ is denoted by $\hdg_\mathbb{Q}^k(X)$.
 \end{secdefn}
-Suppose $Z \subseteq X$ be an smooth subvariety with codimension $r$. View $Z$ as analytic submanfold $Z_\text{an}$ of $X_\text{an}$. For any $(2n-2r)$-class $[\omega] \in H^{2n-2r}(X;\mathbb{C})$, we have
+Suppose $Z \subseteq X$ be an smooth sub-variety with codimension $r$. View $Z$ as analytic submanifold $Z_\text{an}$ of $X_\text{an}$. For any $(2n-2r)$-class $[\omega] \in H^{2n-2r}(X;\mathbb{C})$, we have
 \begin{align*}
 \cl(Z):H^{2n-2r}(X;\mathbb{C}) \rightarrow \mathbb{C}\\
 [\omega] \mapsto \int_{Z} \omega_{|Z}
@@ -485,7 +486,7 @@ If $X$ is compact K\"ahler manifold, then we have following
 where this $\omega$ is K\"ahler form. Hence $H^{r,r}(X;\mathbb{C}) \neq 0$ since $H^*(X;\mathbb{C})$ is torsion free under cup product.
 Actually, we can claim that each fundamental class $[\eta_Z]$ compatible with Poincar\'e dual of singular class $[i_*Z] \in H_{2n-2r}(X;\mathbb{Z})$. Hence we can define $\mathbb{Q}$-linear map
 \begin{align*}
-	\clq \colon Z_r(X) \to H^{r,r}(X;\mathbb{Q})=\hdg^r(X)\\
+	\clq \colon Z_r(X) \to H^{r,r}(X;\mathbb{Q})=\hdg_\mathbb{Q}^r(X)\\
 	\sum_i n_i Z_r \mapsto \sum_i n_i [\eta_{Z_i}]	
 \end{align*}
 where $Z_r(X)$ is group of $r$-cycles of $X$.
@@ -495,6 +496,7 @@ where $Z_r(X)$ is group of $r$-cycles of $X$.
 \pica(X) \rightarrow H^{1,1}(X;\mathbb{Z})
 \]
 is surjective.
+\input{cycles.tex}
 \newpage	
 \begin{quote}
 	Copyright \copyright{}  2018  ThinkCat.
@@ -505,7 +507,6 @@ is surjective.
 	A copy of the license is included in the section entitled ``GNU
 	Free Documentation License''.
 \end{quote}
-
 \bigskip
 \bibliography{library-ref}
 \bibliographystyle{amsalpha}
