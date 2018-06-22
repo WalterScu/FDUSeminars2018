@@ -16,7 +16,7 @@ A seminar with about one-month length will be hold in SCMS, 2018. We will talk a
 4. Localization and embedding theorem
 5. Motivic homotopy theory ($A^1$-homotopy theory)
 6. Spectra and motivic stable homotoy theory
-7. Comming soon!
+7. Coming soon!
 ## Schedule and Location
 * location: 2201, East Guanghua Buiding, Handan campus, Fudan University;
 * Time: 14:00, Saturday
