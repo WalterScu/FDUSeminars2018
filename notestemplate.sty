@@ -18,10 +18,26 @@
 	%,pdfpages % Allows entire PDF files to be inserted into the final document.
 	%,refstyle % Combined with refstyle.def, defines specialized label and reference commands.
 	,hyperref % Makes references clickable.
+	,xkeyval,tikz
+	,xeboiboites
 }
+%\maketitle
+\renewcommand{\maketitle}{\begin{titlepage}
+		\begin{center}
+			\includegraphics{PIC/thinkcat.png}\par\vskip 60\p@
+			{\huge \bfseries Hodge Theory and Algebraic Cycles}\par
+			\vskip 3em{\large \authors}
+		\end{center}\par
+	\vspace{30 \p@}
+	\tableofcontents
+\end{titlepage}}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhead[L]{\sectionmark}
+\rhead{\setlength{\unitlength}{\baselineskip}% 
+	\begin{picture}(3,0){\includegraphics[scale=0.4]{PIC/SCMSlogo.png}} \end{picture}}
 %Documents format
 \geometry{top=2.5cm,bottom=2cm,left=2cm,right=2cm}
-\pagestyle{plain}
 %AMS theorem environment
 \theoremstyle{definition}
 %\newtheorem{chdefn}{Definition}[chapter]
@@ -32,11 +48,11 @@
 %\newtheorem{chthm}{Theorem}[chapter]
 \newtheorem{secthm}{Theorem}[section]
 %\newtheorem{chprop}[chthm]{Proposition}
-\newtheorem{secprop}[secthm]{Proposition}
+%\newtheorem{secprop}[secthm]{Proposition}
 %\newtheorem{chlemma}[chthm]{Lemma}
 \newtheorem{seclemma}[secthm]{Lemma}
 %\newtheorem{chcor}[chthm]{Corollary}
-\newtheorem{seccor}[secthm]{Corollary}
+%\newtheorem{seccor}[secthm]{Corollary}
 
 \theoremstyle{remark}
 \newtheorem{rem}{Remark}[section]
@@ -68,3 +84,13 @@
 \DeclareMathOperator{\hdg}{Hdg}
 \DeclareMathOperator{\clq}{cl_\mathbb{Q}}
 \DeclareMathOperator{\cl}{cl}
+
+\newboxedtheorem[small box style={fill=blue!20,draw=black, rounded corners},
+big box style={fill=Gray!50,draw=black,thick,rounded corners},
+headfont=\bfseries]%
+{secprop}{Proposition}{secthm}
+
+\newboxedtheorem[small box style={fill=white, draw=black, rounded corners},
+big box style={fill=Gray!50,draw=black,thick,rounded corners},
+headfont=\it]%
+{seccor}{Corllary}{secthm}

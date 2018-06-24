@@ -1,9 +1,11 @@
 % !TEX root=hodge.tex
-\documentclass[11pt,oneside,a4paper]{amsbook}
+\documentclass[11pt,oneside,a4paper]{amsart}
 \usepackage{euler}
 \usepackage{times}
 \usepackage[all]{xy}
 \usepackage{cite}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
 \usepackage{notestemplate}
 \usepackage[utf8]{inputenc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -13,9 +15,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \maketitle
-\tableofcontents
+%\tableofcontents
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Hodge Theory}
 \section{Hodge Decomposition for Real Manifolds}
 Suppose $(X,g)$ be an $n$-dimensional manifold with Riemannian metric $g$ and $\Omega^k (X)$ be the bundle of $k$-forms of $X$, $A^k (X)$ be the space of differential forms of degree $k$ on $X$.
 
@@ -153,7 +154,7 @@ for any $k= p+q$. Put
 \end{proof}
 
 \begin{secprop}
-	Suppose $(X,I)$ be integrable almost complex manifold. Then we have 
+	Suppose $(X,I)$ is integrable almost complex manifold. Then we have 
 	\begin{enumerate}
 		\item $\partial^2 = 0 $ and $\bar{\partial}^2=0$
 		\item $\partial \bar{\partial} + \bar{\partial} \partial =0$
@@ -496,7 +497,8 @@ where $Z_r(X)$ is group of $r$-cycles of $X$.
 \pica(X) \rightarrow H^{1,1}(X;\mathbb{Z})
 \]
 is surjective.
-\input{cycles.tex}
+
+%\input{cycles.tex}
 \newpage	
 \begin{quote}
 	Copyright \copyright{}  2018  ThinkCat.
