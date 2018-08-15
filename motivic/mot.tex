@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[b5paper,10pt]{article}
 \usepackage[colorlinks]{hyperref}
 \usepackage{graphicx}
 \usepackage{tikz-cd}
@@ -7,6 +7,7 @@
 \author{Chow.}
 \begin{document}
 \maketitle
+\tableofcontents
 	\section{Construction of Unstable Homotopy Category}
 	In order to refine the triangulated category of Voevodsky's motives and apply more tools from algebraic topology, we need well-behaved homotopy theory for schemes. Homotopy theory for schemes also allow us to construct motivic cohomology and algebraic K-theory which are looked as generalized cohomology theory defined with Brown representativity theorem.
 	\subsection{Simplicial Sheaves and Hypercovers}
@@ -62,10 +63,31 @@ By Yoneda lemma, for simplicial set $X \in \mathbf{sSets}$, we have
 \[
 X([n])\simeq \mathbf{sSets}(\Delta[n], X)
 \]
+For convenience, we always denote $X([n])$ by $X_n$ for simplicial set $X$, $d_i = X(d^i)$ and $s_i= X(s^i$). 
 \begin{figure}[h]
-	\caption{Idea of simplicial sets (from nacatlab)}
+	\caption{Idea of simplicial sets (from ncatlab)}
 \centering\includegraphics[scale=0.5]{PIC/SimplicialSetsIdea.jpg}
 \end{figure}
 
-In classical simplicial homotopy theory, we can endow $\mathbf{sSets}$ with model structure where fibrations are Kan fibrations and weak equivalence are morphisms which induce isomorphisms on homotopy groups.
+Let $\Delta^n$ be standard simplex in topological space category. Then we can defined topological space respect to given simplicial set $X$ as follows
+\[
+|X| := \colim_{(\Delta_n \to X) \in \mathbf{sSets}/X} \Delta^n
+\]
+Furthermore, $|-|$ is covariant functorial in $\mathbf{sSets}$ since co-representable $\mathbf{sSets}(\Delta_n,-)$ and colimit are functorial. $|-|$ is called \emph{geometric realization functor}.
+
+In classical simplicial homotopy theory, we can endow $\mathbf{sSets}$ with model structure where fibrations are Kan fibrations and weak equivalence are morphisms which induce isomorphisms between fibrant objects on homotopy groups (can be defined as homotopy groups of corresponding geometric realizations).
+\subsubsection{Simplicial Objects}
+Let $\mathcal{C}$ be arbitrary category. We say $X_*$ is a \emph{simplicial object} on $\mathcal{C}$ if $X_*$ is a presheaf $X_* \colon \Delta^{op} \to \mathcal{C}$ and $\mathbf{s}\mathcal{C}$ denotes the category of simplicial objects on $\mathcal{C}$. Hence simplicial sets are simplicial objects on $\mathbf{Sets}$. 
+
+If $\mathcal{A}$ is  an Abelian category, then we have following correspondence
+\begin{secprop}[Dold-Kan Correspondence]
+\[
+N \colon s\mathcal{A} \to \mathbf{Ch}_{\geq 0} (\mathcal{A})
+\]
+is Quillen equivalence (i.e.\ category equivalence which is also Quillen functor) respect to canonical model structure on $s\mathcal{A}$ and projective model on $\mathbf{Ch}_{\geq 0 } (\mathcal{A})$. $N$ is functor of normalized complex and $\mathbf{Ch}_{\geq 0}(\mathcal{A})$ is category of non-negative chain complexes. This equivalence is called \emph{Dold-Kan correspondence}.
+\end{secprop}
+This proposition means that we homological algebra over Abelian category is equivalent to homotopy theory for its simplicial objects. It is convenient to study homotopy theory for simplicial objects because we have geometric realization functor to make construction more natural.
+\subsubsection{Simplicial Homotopy Theory for Presheaves and Sheafification}
+Suppose $\mathbf{PSh}(\mathcal{C})$ be the category of presheaves on $\mathcal{C}$.
+
 \end{document}
