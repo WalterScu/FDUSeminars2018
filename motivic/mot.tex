@@ -1,12 +1,18 @@
-\documentclass[b5paper,11pt]{article}
+\documentclass[b5paper,10pt]{article}
 \usepackage[colorlinks]{hyperref}
 \usepackage{graphicx}
 \usepackage{tikz-cd}
 \usepackage{notestemplate}
+\usepackage{fontspec}
+%\setmainfont{Times New Roman}
 \title{Motivic Homotopy Theory}
 \author{Chow.}
+\date{}
 \begin{document}
 \maketitle
+\begin{center}
+	\centering\includegraphics[scale=0.1]{PIC/NEKOPARA.jpg}
+\end{center}
 \tableofcontents
 	\section{Construction of Unstable Homotopy Category}
 	In order to refine the triangulated category of Voevodsky's motives and apply more tools from algebraic topology, we need well-behaved homotopy theory for schemes. Homotopy theory for schemes also allow us to construct motivic cohomology and algebraic K-theory which are looked as generalized cohomology theory defined with Brown representativity theorem.
@@ -112,7 +118,7 @@ If $\mathcal{C}$ is a site with Grothendieck topology, we can define $\mathbf{Sh
 		\item For all $U \in \mathcal{C}$, $\tilde{\pi}_n(f): \tilde{\pi}_n(X,x) \to \tilde{\pi}_n(Y,f(x))$ is isomorphism on $\mathcal{C}/U$ for any choice of base point $x \in X(U)$.
 	\end{itemize}
 \end{secdefn}
-The $\tau$-local cofibrations are same as ordinary cofibrations of $\mathbf{PSh^{sSets}}(\mathcal{C})$ and $\tau$-fibrations are morphisms in $\mathbf{PSh^{sSets}}(\mathcal{C})$ satisfy RLP for $\tau$-acyclic cofibration (i.e.\ be both $\tau$-cofibration and $\tau$-weak equivalence).
+The $\tau$-local cofibrations are same as ordinary cofibrations of $\mathbf{PSh^{sSets}}(\mathcal{C})$ and $\tau$-fibrations are morphisms in $\mathbf{PSh^{sSets}}(\mathcal{C})$ satisfy RLP for $\tau$-acyclic cofibration (i.e.\ be both $\tau$-cofibration and $\tau$-weak equivalence). Jardine proved that these datum actually define a model structure.
 
 In particular, if $\mathcal{C}=(Sm/S)_\tau$ is site of smooth $S$-schemes with Grothendieck topology $\tau$, we denote $\mathbf{Spc}^{pre}(S)$ (resp.\ $\mathbf{Spc}_\tau^{pre}(S)$, resp.\ $\mathbf{Spc}_\tau(S)$) the category of simplicial presheaves (res.\ simplical presheaves with $\tau$-local model structue, resp.\ simplicial $\tau$-sheaves) on $\mathcal{C}=(Sm/S)_\tau$. $\mathbf{Spc_\tau}(S)$ is full subcategory of $\mathbf{Spc}^{pre}_\tau(S)$ and left adjoint functor $s$ of inclusion exists. This fucntor is called is called \emph{sheafification functor} under topology $\tau$. Hence $\mathbf{Spc_\tau}(S)$ is model category. Furthermore, we have 
 \begin{secprop}
@@ -121,7 +127,43 @@ In particular, if $\mathcal{C}=(Sm/S)_\tau$ is site of smooth $S$-schemes with G
 Hence we have $\mathbf{Ho}(\mathbf{Spc}_\tau^{pre}(S)) \simeq \mathbf{Ho}(\mathbf{Spc}_\tau(S))$, denoted by $\mathcal{H}_\tau(S)$.
 \subsubsection{Hypercovers and Bousfield localization}
 More generally, we can realize $\tau$-local model structure on $\mathbf{PSh^{sSets}_\tau}(\mathcal{C})$ as Bousfield localization with respect to $\tau$-hypercovers.
-\begin{secdefn}[Bousfield localization]
-	
-\end{secdefn} 
+
+Let $\mathcal{M}$ be a model category. A subcategory $\mathcal{S} \subseteq \mathcal{M}$ is called 
+a \emph{subcategory of weak equivalences} if all identity maps in $\mathcal{M}$ are in $\mathcal{S}$, $\mathcal{S}$ is closed under retracts and $\mathcal{S}$ satisfies the two out of three property.
+\begin{secdefn}
+	Suppose $\mathcal{S}$ be a subcategory of weak equivalence. An object $X$ of $\mathcal{M}$ is called $\mathcal{S}$-local if 
+	\begin{itemize}
+		\item $X$ is fibrant object in $\mathcal{M}$;
+		\item  For every morphism $Y \xrightarrow{f} Z \in \mathcal{S}$, the induced morphism 
+		\[
+		f^* \colon [Z,X] \to [Y,X]
+		\]
+		is bijection, where $[-,-]$ is hom-set in homotopy category of $\mathcal{M}$.
+	\end{itemize}
+\end{secdefn}
+In particular, if $\mathcal{M}$ is a simplicial model category ( we omit the definition and the only things we need to know are (1) $\mathbf{PSh^{sSets}}(\mathcal{C})$ is simplicial model category; (2) Hom-sets in this category are in $\mathbf{sSets}$
+ ). Then $X\in \mathcal{M}$ is called $\mathcal{S}$-local if 
+ \begin{itemize}
+ 	\item $X$ is fibrant object in $\mathcal{M}$.
+ 	\item For every morphism $Y \xrightarrow{f} Z \in \mathcal{S}$, the induced morphism
+ 	\[
+ 	f^* \colon \mathcal{M}(Z,X) \to \mathcal{M}(Y,X)
+ 	\]
+ 	is weak equivalence in $\mathbf{sSets}$.
+ \end{itemize}
+And a morphism $X \xrightarrow{f} Y \in \mathcal{M}$ if and only if for all $\mathcal{S}$-local object $Z$, the induced morphism
+\[
+f^* \colon \mathcal{M}(Y,Z) \to \mathcal{M}(X,Z) 
+\]
+is weak equivalence in $\mathbf{sSets}$.
+\begin{secdefn}[Bousfield localization] Let $\mathbf{Fib}_{\mathcal{S}}$ be the class of morphisms in $\mathcal{M}$ satisfy RLP for $\mathcal{S} \cap \mathbf{Cof}$.
+	If tuple $(S,\mathbf{Cof},\mathbf{Fib}_\mathcal{S})$ forms a model structure on $\mathcal{M}$, then a $\mathcal{S}$-fibrant replacement functor $ X \mapsto LX$ is called Bousfield localization with respect to $\mathcal{S}$ and the new model category is denoted by $L_\mathcal{S} \mathcal{M}$.
+\end{secdefn}
+\begin{secthm}
+	For category of simplical presheaves on essentially small category $\mathcal{C}$, the global model structure admits (left) Bousfield localization for all $\mathcal{S}$.
+\end{secthm}
+Let $\mathcal{C}$ be a site with Grothendieck topology $\tau$. Then define $\mathcal{W}_\tau$ be the smallest subcategory of weak equivalences contains class of $\tau$-hypercovers $U_* \to X$. Then we have
+\begin{secthm}
+	The identity functor $L_{\mathcal{W}_\tau} \mathbf{PSh^{sSets}}(\mathcal{C}) \to \mathbf{PSh^{sSets}_\tau}(\mathcal{C})$ is Quillen equivalence.
+\end{secthm}
 \end{document}
