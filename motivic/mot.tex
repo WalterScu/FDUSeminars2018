@@ -11,10 +11,10 @@
 \begin{document}
 \maketitle
 \begin{center}
-	\includegraphics[scale=0.2]{PIC/xiaohui.eps}
+	\includegraphics[width=5cm]{PIC/NEKOPARA.jpg}
 \end{center}
 \tableofcontents
-	\section{Construction of Unstable Homotopy Category}
+	\section{Unstable Homotopy Category}
 	In order to refine the triangulated category of Voevodsky's motives and apply more tools from algebraic topology, we need well-behaved homotopy theory for schemes. Homotopy theory for schemes also allow us to construct motivic cohomology and algebraic K-theory which are looked as generalized cohomology theory defined with Brown representativity theorem.
 	\subsection{Simplicial Methods for Algebraic Geometry}
 	Let us firstly recall some simplicial homotopy theory.
@@ -275,4 +275,92 @@ So we get
 \end{tikzcd}
 \]
  Hence $u$ is the required realization functor.
+\subsubsection{Homotopy Purity}
+\subsection{Properties of Motivic Homotopy Category}
+\begin{secdefn}
+	For $F_* \in \mathbf{Spc_{Nis}}(S)$, one says $F_*$ has Brown-Gersten property if for any distinguished square,
+	\[
+	\begin{tikzcd}
+	&F(X)_* \ar[r] \ar[d] & F(V)_* \ar[d]\\
+	&F(U)_* \ar[r]& F(U \times_X V)_*
+	\end{tikzcd}
+	\]
+	is homotopy push-out in $\mathbf{sSets}$.
+\end{secdefn}
+If $F_* \in \mathbf{Spc_{Nis}(S)}$ is Nisnevich local object, then $F_*$ has Brown-Gersten property. Yoneda lemma implies that this diagram is equal to 
+\[
+\begin{tikzcd}
+&\hom(X,F) \ar[r] \ar[d]& \hom(V,F) \ar[d]\\
+&\hom(U,F) \ar[r]&\hom(U\times_X V,F)\\ 
+\end{tikzcd}
+\]
+where $X, U,V$ and $U \times_X V$ is viewed as the simplicial presheaf represented by them. If $F_*$ is Nisnevich local object, then arrows in this diagram are all weak equivalences in $\mathbf{sSets}$. Hence it is homotopy push-out.
+\begin{secprop}
+	If $\mathcal{X}$ is motivic space in $\mathcal{H}(k)$, i.e.\ $\mathcal{X}$ is $\mathbb{A}^1$-local object in $\mathbf{Spc}(k)$, then we have
+	\[
+	\pi_0(\mathcal{X})(U) \simeq \mathcal{H}(k)(U, \mathcal{X}_{Nis}) 
+	\]
+	Furthermore, if $\mathcal{X}$ is pointed, then
+	\[
+	\pi_n(\mathcal{X},*)(U) \simeq \mathcal{H}_*(k)(\mathbb{S}^n \wedge U_+,\mathcal{X}_{Nis})
+	\]
+\end{secprop}
+\begin{proof}
+	$\mathcal{X}$ is motivic space implies $\mathcal{X}_{Nis}$ is also fibrant object in $\mathbf{Spc}(k)$, hence by fundamental theorem of homotopical algebra, we have 
+	\[
+	\mathcal{H}(k)(U, \mathcal{X}_{Nis}) = [U,\mathcal{X}_{Nis}] \cong [U,\mathcal{X}]\cong \pi(U,\mathcal{X}) = \pi_0(\mathcal{X})(U)
+	\]
+\end{proof}
+\section{Stable Motivic Homotopy Theory}
+In the context of unstable motivic homotopy category, we can develop the theory of $\mathbb{T}$-spectra and stable motivic homotopy category. Most of $\mathbb{A}^1$-invariants in algebraic geometry can be proved to be representable in such stable homotopy category.
+\subsection{$\mathbb{T}$-Spectra}
+\subsubsection{Motivic Spheres}
+Let $\mathbf{Spc}_{*}(S)$ be the category of pointed $\mathbb{A}^1$-presheaves, which means each object is $\mathbb{A}^1$-presheaf together with base point 
+\[
+* \to F
+\]
+We have wedge sum and smash product in $\mathbf{Spc}_*(S)$,
+\begin{itemize}
+	\item $\mathcal{X} \vee \mathcal{Y}$ is defined as push-out
+	\[
+	\begin{tikzcd}
+	&* \ar[r] \ar[d]& \mathcal{X} \ar[d]\\
+	&\mathcal{Y} \ar[r]&\mathcal{X} \vee \mathcal{Y}\\ 
+	\end{tikzcd}
+	\]
+	\item smash product $\mathcal{X}\wedge \mathcal{Y}:= \frac{\mathcal{X}\times \mathcal{Y}}{\mathcal{X}\vee\mathcal{Y}}$.
+\end{itemize}
+
+We have following two kinds of circles in context of motivic homotopy theory.
+\begin{itemize}
+	\item(simplicial circle) the constant sheaf $\mathbb{S}^1= \Delta[1]/\partial \Delta[1]$. Its pointed sheaf $(\mathbb{S}^1,0)$ is denoted by $S^{1,0}$ or $S_s^1$;
+	\item(Tate circle) the presheaf represented by $\mathbb{G}_m = \mathbb{A}^1-0$, its pointed sheaf $(\mathbb{G}_m,1)$ is denoted by $S^{1,1}$ or $S_t^1$.
+\end{itemize}
+Hence we can define two kinds of suspension: (1) simplicial suspension $\Sigma_s X \colon = S^1_s \wedge X$; (2) Tate suspension $\Sigma_t X \colon = S_t^1 \wedge X$. However, they not suspension we truly need to construct stable homotopy category. Let $\mathbb{T} = (\mathbb{P}^1,\infty)$, define $\Sigma X = \mathbb{T} \wedge X$. As we can show $\Sigma_s S^1_t$ is  push-out of 
+\[
+\begin{tikzcd}
+&\mathbb{G}_m \ar[r] \ar[d]& * \\
+&* &\\
+\end{tikzcd}
+\]
+hence $\Sigma_s S^1_t$ is homotopy equivalent to $* \coprod_{\mathbb{A}^1-0} \mathbb{A}^1 \cong \mathbb{P}^1$. Hence $\Sigma \simeq \Sigma_s \Sigma_t$ in $\mathcal{H}_*(S)$.
+\begin{secdefn}
+	In $\mathcal{H}_*(S)$, we define motivic spheres as following
+	\[
+	S^{p,q}= (\bigwedge^{p-q}S^1_s) \wedge(\bigwedge^q S^1_t)
+	\]
+	for all $p \geq q \geq 0$.
+\end{secdefn}
+\subsubsection{Stable Weak Equivalence}
+\begin{secdefn}
+	A $\mathbb{T}$-spectra is a sequence of pointed objects $\{ E_0, E_1 ,\cdots\}$ in $\mathbf{Spc}_*(S)$ together with weak equivalences
+	\[
+	l_n \colon E_{n+1} \to \Sigma E_{n}
+	\].
+	$\{l_n\}_{n=0}^{\infty}$ are called structure maps of spectra $E_*$.
+\end{secdefn}
+For $\mathcal{X} \in \mathbf{Spc}_*(S)$, we define
+\[
+\Sigma^{\infty}(\mathcal{X}) = (\mathcal{X} , \Sigma \mathcal{X}, \Sigma^2 \mathcal{X}, \cdots)\]
+
 \end{document}
