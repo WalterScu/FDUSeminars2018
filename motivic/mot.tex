@@ -11,7 +11,7 @@
 \begin{document}
 \maketitle
 \begin{center}
-	\includegraphics[width=5cm]{PIC/NEKOPARA.jpg}
+	\includegraphics[height=4cm]{PIC/xiaohui.eps}
 \end{center}
 \tableofcontents
 	\section{Unstable Homotopy Category}
@@ -276,6 +276,23 @@ So we get
 \]
  Hence $u$ is the required realization functor.
 \subsubsection{Homotopy Purity}
+In motivic homotopy category, we have following definition of Thom space as in classical algebraic topology
+\begin{secdefn}
+	Let $\pi \colon E \to B$ be a vector bundle over base scheme $B \in \mathbf{Sm}/k$ with zero section $s: B \to E$, the \emph{Thom space} is
+	\[
+	Th(E):= E/(E-s(E))
+	\]
+\end{secdefn}
+Being same as in algebraic topology, purity theorem exists for Thom space, which is called \emph{Morel-Voevodsky purity theorem}.
+\begin{secthm}
+	Let $Z \hookleftarrow X$ be a closed immersion in $\mathbf{Sm}/k$ and $N$ is normal bundle of $Z$, then we have $\mathbb{A}^1$-weak equivalence
+	\[
+	Th(N) \to X/(X-Z)
+	\]
+\end{secthm}
+\begin{ex}
+	For trivial line bundle $\mathbb{A}^1 \to \spec k$, we have $Th(\mathbb{A}^1)= \mathbb{A}^1/\mathbb{A}^1 -0 \simeq \mathbb{P}^1$. 
+\end{ex}
 \subsection{Properties of Motivic Homotopy Category}
 \begin{secdefn}
 	For $F_* \in \mathbf{Spc_{Nis}}(S)$, one says $F_*$ has Brown-Gersten property if for any distinguished square,
@@ -294,6 +311,7 @@ If $F_* \in \mathbf{Spc_{Nis}(S)}$ is Nisnevich local object, then $F_*$ has Bro
 &\hom(U,F) \ar[r]&\hom(U\times_X V,F)\\ 
 \end{tikzcd}
 \]
+
 where $X, U,V$ and $U \times_X V$ is viewed as the simplicial presheaf represented by them. If $F_*$ is Nisnevich local object, then arrows in this diagram are all weak equivalences in $\mathbf{sSets}$. Hence it is homotopy push-out.
 \begin{secprop}
 	If $\mathcal{X}$ is motivic space in $\mathcal{H}(k)$, i.e.\ $\mathcal{X}$ is $\mathbb{A}^1$-local object in $\mathbf{Spc}(k)$, then we have
@@ -343,7 +361,19 @@ Hence we can define two kinds of suspension: (1) simplicial suspension $\Sigma_s
 &* &\\
 \end{tikzcd}
 \]
-hence $\Sigma_s S^1_t$ is homotopy equivalent to $* \coprod_{\mathbb{A}^1-0} \mathbb{A}^1 \cong \mathbb{P}^1$. Hence $\Sigma \simeq \Sigma_s \Sigma_t$ in $\mathcal{H}_*(S)$.
+and $\mathbb{A}^1$ is homotopic to $*$, hence $\Sigma_s S^1_t$ is homotopy equivalent to $\mathbb{A}^1/\mathbb{A}^1-0 \simeq * \coprod_{\mathbb{A}^1-0} \mathbb{A}^1 \cong \mathbb{P}^1$. Hence $\Sigma \simeq \Sigma_s \Sigma_t$ in $\mathcal{H}_*(S)$.
+\begin{rmk}
+	In this passage, $\simeq$ always means weak equivalence, and $\cong$ is isomorphism.
+\end{rmk}
+With definition of smash product in $\mathbf{Spc}_*(k)$, we claim that for Thom space
+\[
+Th(E_1 \times E_1) \cong Th(E_1) \wedge Th(E_2)
+\]
+with base points in $0$-sections.
+Hence we have 
+\[
+\mathbb{A}^n/\mathbb{A}^n-0 \simeq Th(\mathbb{A}^n) \cong Th(\mathbb{A}^1)^{\wedge n} \simeq (\mathbb{P}^1,\infty)^{\wedge n} \simeq \Sigma_s^n \mathbb{G}_m^{\wedge n}
+\]
 \begin{secdefn}
 	In $\mathcal{H}_*(S)$, we define motivic spheres as following
 	\[
@@ -394,7 +424,7 @@ where $(-)^{\text{fib}}$ is fibrant replacement in $\mathbf{Spc}_*(S)$ (it is no
 	\]
 	is isomorphism in $\mathcal{H}_*(S)$ for all $n \geq 0$. It is proper and combination which can be checked level-wisely.
 \end{secdefn}
-The Bousfield localization of $\mathbf{Spt}^{\mathbb{T}}(S)$ with respect to $\mathbb{T}$-stable weak equivalences is denoted by $L_\mathbb{T} \mathbf{Spt }^{\mathbb{T}}(S)$. Its homotopy category is called \emph{motivic stable homotopy category over} $S$, denoted by $\mathcal{SH}(S)$.
+The Bousfield localization of $\mathbf{Spt}^{\mathbb{T}}(S)$ with respect to $\mathbb{T}$-stable weak equivalences is denoted by $L_\mathbb{T} \mathbf{Spt }^{\mathbb{T}}(S)$. Its homotopy category is called \emph{motivic stable homotopy category over} $S$, denoted by $\mathcal{SH}(S)$. The simplicial suspension and Tate suspension in $\mathbf{Spt}^{\mathbb{T}}(k)$ can be extended to $\mathcal{SH}(k)$. It can be proved straightly $\Sigma_s$ makes $\mathcal{SH}(k)$ a triangulated category, with $E[1]= \Sigma_s E$.
 \subsection{Bigraded Cohomology}
 For $X \in \mathbf{Sm/S}$ and $E \in \mathbf{Spt}^{\mathbb{T}}(S)$, we can define bigraded cohomology
 \[
@@ -427,9 +457,28 @@ which is composition of
 \[
 \mathbb{T} \wedge K(R(2n),n) \to K(R(2),1) \wedge K(R(2n),n) \to K(R(2n+2),n+1)
 \]
-induced by natural map $\mathbb{T} \simeq \mathbb{A}^1/\mathbb{A}^1-0 \to R_{tr}(\mathbb{A}^1)/R_{tr}(\mathbb{A}^1-0)$, we get a $\mathbb{T}$-spectra. It is denoted by $M\mathbb{H}_R$ called \emph{motivic Eilenberg-MacLane spectra} over $R$. It represents $R$-coefficient motivic cohomology
-\[
-H^{p,q}_\mathcal{M}(X,R)= H^p(X,R(q)) \cong [\Sigma^{\infty}X_{+}, S^{p,q}\wedge M\mathbb{H}_R]_{\mathcal{SH}(k)}
-\]
-for any smooth scheme $X$ over field $k$.
+induced by natural map $\mathbb{T} \simeq \mathbb{A}^1/\mathbb{A}^1-0 \to R_{tr}(\mathbb{A}^1)/R_{tr}(\mathbb{A}^1-0)$, we get a $\mathbb{T}$-spectra. It is denoted by $M\mathbb{H}_R$ called \emph{motivic Eilenberg-MacLane spectra} over $R$. 
+\begin{secthm}
+	\[
+	H^{p,q}_\mathcal{M}(X,R)= H^p(X,R(q)) \cong [\Sigma^{\infty}X_{+}, S^{p,q}\wedge M\mathbb{H}_R]_{\mathcal{SH}(k)}
+	\]
+	for any smooth scheme $X$ over field $k$. $R(q)$ is $R$-coefficient motivic complex defined by $\mathbb{Z}(q) \otimes R$, where
+	\[
+	\mathbb{Z}(q) = C_* \mathbb{Z}_{tr}(\mathbb{G}_m^{\wedge q})[-q]
+	\]
+	as complex of presheaves with transfers.
+\end{secthm}It represents $R$-coefficient motivic cohomology
+We give the outline of proof as follows.
+\begin{proof}
+	Since we have quasi-isomorphism
+	\[
+	C_*\mathbb{Z}_{tr}(\mathbb{G}_m^q)[-q] \to C_* \mathbb{Z}_{tr}((\mathbb{P}^1)^{\wedge n})
+	\]
+	and $(\mathbb{P}^1)^{\wedge n}$ is $\mathbb{A}^1$-homotopy equivalent to $\mathbb{A}^n/ \mathbb{A}^n-0$, hence 
+	\[
+	\mathcal{H}_0(C_*\mathbb{Z}_{tr}(\mathbb{G}_m^q)[-q+p]) = [-, \mathbb{Z}_{tr}(\mathbb{A}^q)/\mathbb{Z}_{tr}(\mathbb{A}^q-0)[p]]\cong[\Sigma^{\infty}(-)_+, S^{p,q}\wedge M\mathbb{H}_\mathbb{Z}]_{\mathcal{SH}(k)}
+	\]
+	Hence we prove that $\mathbb{Z}$-coefficient motivic cohomology $H^{*,*}_{\mathcal{M}}(-,\mathbb{Z})$ is represented by motivic Eilenberg-MacLane spectrum.
+\end{proof}
+
 \end{document}
