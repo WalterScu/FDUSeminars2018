@@ -3,7 +3,10 @@
 \usepackage{graphicx}
 \usepackage{tikz-cd}
 \usepackage{notestemplate}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \usepackage{fontspec}
+\usepackage{cite}
 %\setmainfont{Times New Roman}
 \title{Motivic Homotopy Theory}
 \author{Chow.}
@@ -80,7 +83,24 @@ Let $\Delta^n$ be standard simplex in topological space category. Then we can de
 |X| := \colim_{(\Delta_n \to X) \in \mathbf{sSets}/X} \Delta^n
 \]
 Furthermore, $|-|$ is covariant functorial in $\mathbf{sSets}$ since co-representable $\mathbf{sSets}(\Delta_n,-)$ and colimit are functorial. $|-|$ is called \emph{geometric realization functor}.
-
+For standard simplicial set $\Delta[n]$, we can define $k$-\emph{horn} as
+\[
+\Lambda^k[n] = \bigcup_{i \neq k} \partial^i \Delta[n]
+\]
+For example, $\abs{\Lambda^0[2]}$ looks like
+\begin{figure}[h]
+	\centering\includegraphics[height=0.15\textheight ]{PIC/horn.png}
+\end{figure}
+\begin{secdefn}
+	The morphism $f \colon X \to Y$ between simplicial sets is called Kan fibration if in square
+	\[
+	\begin{tikzcd}
+	&\Lambda^k[n] \ar[r] \ar[d,hook]& X \ar[d,"f"]\\
+	& \Delta[n] \ar[r] & Y \\
+	\end{tikzcd}
+	\]
+	the lifting from $\Delta[n]$ to $X$ exists, where $\Lambda^k[n] \hookrightarrow \Delta[n]$ is the natural inclusion of horn.
+\end{secdefn}
 In classical simplicial homotopy theory, we can endow $\mathbf{sSets}$ with model structure where fibrations are Kan fibrations and weak equivalence are morphisms which induce isomorphisms between fibrant objects on homotopy groups (can be defined as homotopy groups of corresponding geometric realizations).
 \subsubsection{Simplicial Objects}
 Let $\mathcal{C}$ be arbitrary (concrete) category. We say $X_*$ is a \emph{simplicial object} on $\mathcal{C}$ if $X_*$ is a presheaf $X_* \colon \Delta^{op} \to \mathcal{C}$ and $\mathbf{s}\mathcal{C}$ denotes the category of simplicial objects on $\mathcal{C}$. Hence simplicial sets are simplicial objects on $\mathbf{Sets}$. 
@@ -503,5 +523,6 @@ We give the outline of proof as follows.
 	\]
 	Hence we prove that $\mathbb{Z}$-coefficient motivic cohomology $H^{*,*}_{\mathcal{M}}(-,\mathbb{Z})$ is represented by motivic Eilenberg-MacLane spectrum.
 \end{proof}
-
+\bibliography{library-ref}
+\bibliographystyle{alpha}
 \end{document}
